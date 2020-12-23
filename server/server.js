@@ -10,6 +10,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+// Conexión a MongoDB
+mongoose.connect(
+    'mongodb://localhost:27017/demo',
+    {
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useCreateIndex: true,
+        useUnifiedTopology: true
+    },
+    (err, res) => {
+        if (err)
+            throw err;
+
+        console.log('Base de datos ONLINE');
+
+    });
+
 // Texto plano por pantalla
 app.get('/', (req, res) => res.send('Bienvenido!'));
 
