@@ -1,6 +1,6 @@
+require('./config/config');
 const express = require('express');
 const mongoose = require('mongoose');
-
 const app = express();
 const bodyParser = require('body-parser');
 
@@ -14,7 +14,7 @@ app.use(require('./routes/usuario'))
 
 // Conexión a MongoDB
 mongoose.connect(
-    'mongodb://localhost:27017/demo',
+    process.env.URLDB,
     {
         useNewUrlParser: true,
         useFindAndModify: false,
@@ -32,7 +32,7 @@ mongoose.connect(
 // Texto plano por pantalla
 app.get('/', (req, res) => res.send('Bienvenido!'));
 
-app.listen(3000, () => {
-    console.log('Escuchando puerto: ', 3000);
+app.listen(process.env.PORT, () => {
+    console.log('Escuchando puerto: ', process.env.PORT);
 
 })
